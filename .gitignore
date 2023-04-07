@@ -1,32 +1,13 @@
-# Prerequisites
-*.d
+*.*
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+!*.cpp
+!*.h
+!*.cxx
+!*.hpp
+!*.c
+!*.rust
+!.clang-format
+!LICENSE
+!vcpkg.json
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+cpp/vcpkg_installed
