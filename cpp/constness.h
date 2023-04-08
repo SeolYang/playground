@@ -4,22 +4,41 @@
 
 namespace sy::constness
 {
-class AwesomeClass
+
+class Constness
 {
 public:
-    int& Value() { return value; }
+    Constness()
+    {
+        ptr = new int(0);
+    }
+    
+    ~Constness()
+    {
+        delete ptr;
+    }
 
-	void BreakConstness()
-	{
-        ProcessNonConstRefValue(Value());
-	}
-
-	void ProcessNonConstRefValue(int& nonConstRefValue)
-	{
-        nonConstRefValue = 1;
-	}
+    int* ImproperConstPtr() const { return ptr; }
+    int& ImproperConstRef() const { return *ptr; }
+    
+    const int* ProperConstPtr() const { return ptr; }
+    const int& ProperConstRef() const { return *ptr; }
 
 private:
-    int value = 0;
+    int* ptr;
 };
+
+void BreakBitwiseConstness(const Constness& object)
+{
+    int& ref = object.Ref();
+    ref = 1;
+}
+
+void PreventBreakBitwiseConstness(const Constness& object)
+{
+    //int& ref = object.ProperConstRef();
+    //int* ptr = &object.ProperConstRef();
+    const int& ref = object.ProperConstRef();
+    //ref = 1; .. const_cast..... -> ???
+}
 } // namespace sy::constness
