@@ -28,13 +28,13 @@ private:
     int* ptr;
 };
 
-void BreakBitwiseConstness(const Constness& object)
+void ImproperUsageOfBitwiseConstness(const Constness& object)
 {
     int& ref = object.Ref();
     ref = 1;
 }
 
-void PreventBreakBitwiseConstness(const Constness& object)
+void PreventImproperUsage(const Constness& object)
 {
     //int& ref = object.ProperConstRef();
     //int* ptr = &object.ProperConstRef();
